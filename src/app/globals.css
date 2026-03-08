@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --dark-red: #8B0000;
+  --gold: #DAA520;
+  --gold-light: #F0D060;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-dark-red: var(--dark-red);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --font-sans: var(--font-noto-sans-jp);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  min-height: 100dvh;
+}
+
+/* Gold border ornament */
+.court-border {
+  border: 2px solid var(--gold);
+  box-shadow: inset 0 0 20px rgba(218, 165, 32, 0.1);
+}
+
+/* Gavel animation */
+@keyframes gavel-strike {
+  0% { transform: rotate(0deg); }
+  40% { transform: rotate(-30deg); }
+  60% { transform: rotate(5deg); }
+  80% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.gavel-animate {
+  animation: gavel-strike 0.5s ease-in-out;
+}
+
+/* Verdict stamp */
+@keyframes stamp {
+  0% { transform: scale(3) rotate(-15deg); opacity: 0; }
+  50% { transform: scale(1.1) rotate(-15deg); opacity: 0.8; }
+  100% { transform: scale(1) rotate(-15deg); opacity: 1; }
+}
+
+.stamp-animate {
+  animation: stamp 0.4s ease-out forwards;
 }
